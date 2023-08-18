@@ -210,7 +210,7 @@ public class GitClient {
      * @param conflictFiles 冲突文件列表
      * @return 合并结果：FAILED：说明有未提交文件；CONFLICTING：有冲突且自动合并失败，通过conflictFiles获取冲突文件，其他状态默认已合并成功。
      */
-    public static String merge(String localGit, String branchName, List<String> conflictFiles) {
+    public static MergeResult.MergeStatus merge(String localGit, String branchName, List<String> conflictFiles) {
 
         try {
             Git git = Git.open(new File(localGit));
@@ -228,11 +228,11 @@ public class GitClient {
                     conflictFiles.add(entry.getKey());
                 }
             }
-            return merge.getMergeStatus().name();
+            return merge.getMergeStatus();
         }catch (IOException | GitAPIException e) {
             logger.error("同步失败: {}", e.getMessage());
         }
-        return MergeResult.MergeStatus.FAILED.name();
+        return MergeResult.MergeStatus.FAILED;
     }
 
 
