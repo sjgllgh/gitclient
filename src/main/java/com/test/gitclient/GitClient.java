@@ -235,12 +235,7 @@ public class GitClient {
         return MergeResult.MergeStatus.FAILED.name();
     }
 
-    /**
-     * 获取git log
-     * 本地提交
-     * @param localGit 本地仓库地址
-     * @return pushFlag
-     */
+
     public static Iterable<RevCommit> logs(String localGit) {
 
         try (Git git = Git.open(new File(localGit))) {
@@ -252,14 +247,7 @@ public class GitClient {
         return null;
     }
 
-    /**
-     * git reset
-     *
-     * @param localGit 本地仓库地址
-     * @param commitName 提交名字
-     * @param resetType 回退类型
-     * @return pushFlag
-     */
+
     public static boolean reset(String localGit,String commitName,String resetType) {
 
         boolean resetFlag = true;
@@ -385,12 +373,6 @@ public class GitClient {
     }
 
 
-    /**
-     * 获取git状态
-     *
-     * @param localGit 本地仓库地址
-     * @return map
-     */
     public static Map<String,List<String>> gitStatus(String localGit) {
         Map<String,List<String>> map = new HashMap<>();
         try (Git git = Git.open(new File(localGit))) {
@@ -412,12 +394,7 @@ public class GitClient {
         return map;
     }
 
-    /**
-     * 获取git状态
-     *
-     * @param localGit 本地仓库地址
-     * @return map
-     */
+
     public static List<String> gitBranchList(String localGit) {
         List<String> barchList = new ArrayList<>();
         try (Git git = Git.open(new File(localGit))) {
